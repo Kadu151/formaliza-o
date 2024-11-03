@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Texto Jurídico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-800 p-4">
+    <div class="container mx-auto flex justify-between">
+      <a href="index.html" class="text-white font-bold">Home</a>
+      <div class="space-x-4">
+        <a href="index.html" class="text-gray-300 hover:text-white">Início</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto mt-8">
+    <h1 class="text-2xl font-bold text-center mb-6">Manipulação PDF</h1>
+
+    <!-- Dropdown for Section Selection -->
+    <label for="sectionSelect" class="block text-lg font-semibold mb-2">Escolha uma Seção:</label>
+    <select id="sectionSelect" class="block w-full mb-4 p-2 bg-gray-700 text-gray-200">
+      <option value="">-- Selecione --</option>
+      <option value="vendedor">Vendedor</option>
+      <option value="imovel">Imóvel</option>
+      <option value="consorciado">Consorciado</option>
+    </select>
+
+    <!-- File Input Cards -->
+    <div id="fileInputs" class="grid grid-cols-1 gap-4">
+      <!-- Cards will be dynamically generated here -->
+    </div>
+
+    <div id="mergeBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-4 flex items-center justify-center cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="size-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+      </svg>
+    </div>
+
+    <!-- Download Link -->
+    <a id="downloadLink" href="#" class="hidden mt-4 text-center text-blue-400 hover:text-blue-500"></a>
+  </div>
+
+  <script>
+    const fileInputsContainer = document.getElementById('fileInputs');
+    const sectionSelect = document.getElementById('sectionSelect');
+
+    const sections = {
+      vendedor: [
+        "PDF 1: Documento de Identidade do Vendedor",
+        "PDF 2: Certidão da Receita",
+        "PDF 3: Cndt",
+        "PDF 4: Certidão de nascimento/casamento",
+        "PDF 5: Adicionais"
+      ],
+      imovel: [
+        "PDF 1: Matricula do Imóvel",
+        "PDF 2: IPTU ou Certidão de valor venal",
+        "PDF 3: Certidão negativa",
+        "PDF 4: Ata do condomínio",
+        "PDF 5: Declaração do síndico",
+        "PDF 6: Adicionais"
+      ],
+      consorciado: [
+        "PDF 1: Documento de Identidade do consorciado",
+        "PDF 2: Certidão da Receita",
+        "PDF 3: Cndt",
+        "PDF 4: Certidão de nascimento/casamento",
+        "PDF 5: Adicionais"
+      ]
+    };
+
+    sectionSelect.addEventListener('change', (event) => {
+      const selectedSection = event.target.value;
+      fileInputsContainer.innerHTML = ''; // Limpa os campos anteriores
+
+      if (sections[selectedSection]) {
+        sections[selectedSection].forEach((docLabel, index) => {
+          const card = document.createElement('div');
+          card.className = 'bg-gray-700 p-4 rounded-lg shadow-md';
+          card.innerHTML = `  
+            <label for="pdfFiles${index + 1}" class="block text-lg font-semibold mb-2">${docLabel}</label>
+            <input type="file" id="pdfFiles${index + 1}" class="block w-full text-gray-900" accept="application/pdf">
+          `;
+          fileInputsContainer.appendChild(card);
+        });
+      }
+    });
+
+    document.getElementById('mergeBtn').addEventListener('click', async () => {
+      const pdfDocs = [];
+      const fileInputs = fileInputsContainer.querySelectorAll('input[type="file"]');
+
+      for (const fileInput of fileInputs) {
+        const files = fileInput.files;
+        if (files.length === 0) {
+          continue; // Ignora se não há arquivos selecionados neste campo
+        }
+
+        for (const file of files) {
+          if (file.type !== 'application/pdf') {
+            alert(`O arquivo ${file.name} não é um PDF válido.`);
+            continue; // Ignora arquivos que não são PDFs
+          }
+          const arrayBuffer = await file.arrayBuffer();
+          const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+          pdfDocs.push(pdfDoc);
+        }
+      }
+
+      if (pdfDocs.length === 0) {
+        alert('Por favor, selecione pelo menos um arquivo PDF.');
+        return;
+      }
+
+      try {
+        const mergedPdf = await PDFLib.PDFDocument.create();
+        for (const pdfDoc of pdfDocs) {
+          const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+          copiedPages.forEach((page) => mergedPdf.addPage(page));
+        }
+
+        const pdfBytes = await mergedPdf.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const downloadLink = document.getElementById('downloadLink');
+
+        downloadLink.href = url;
+        downloadLink.download = 'merged.pdf';
+        downloadLink.style.display = 'block';
+        downloadLink.textContent = 'Baixar PDF Mesclado';
+      } catch (error) {
+        console.error('Erro ao mesclar PDFs:', error);
+        alert('Ocorreu um erro ao mesclar os arquivos. Verifique o console para mais detalhes.');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Texto Jurídico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Keyframes para animação de fade-in */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Fade-in e zoom quando os cartões entram na página */
+    .animate-fadeIn {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    /* Zoom ao passar o mouse */
+    .hover:scale-105:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 p-4">
+    <div class="container mx-auto flex justify-between">
+      <a href="#" class="text-white font-bold">Home</a>
+      <div class="space-x-4">
+        <a href="index.html" class="text-gray-300 hover:text-white">Inicio</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cards Section with Animations -->
+  <section id="services" class="container mx-auto py-10">
+    <h2 class="text-3xl font-bold text-center text-white mb-8">Serviços</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <a href="qualificacao.html" class="block bg-gray-800 p-6 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105 transition animate-fadeIn">
+        <h3 class="text-xl font-semibold text-white mb-4">Gerador de qualificação</h3>
+        <p class="text-gray-300">Com preenchimento de formularios, voce poderá qualificações automaticas que poderão lhe ajudar a realizar a criação do instrumento particular de maneira mais rapida e efetiva.</p>
+      </a>
+      
+      <!-- Card 2 -->
+      <a href="ocr.html" class="block bg-gray-800 p-6 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105 transition animate-fadeIn" style="animation-delay: 0.1s;">
+        <h3 class="text-xl font-semibold text-white mb-4">Leitor de DOCS</h3>
+        <p class="text-gray-300">Ferramente utilizada para leitura de documentações em PDF e retorno em texto, mais recomendado para utilização de qualificação do imovel, mas utilize a sua criatividade.</p>
+      </a>
+      
+      <!-- Card 3 -->
+      <a href="manipulacao.html" class="block bg-gray-800 p-6 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105 transition animate-fadeIn" style="animation-delay: 0.2s;">
+        <h3 class="text-xl font-semibold text-white mb-4">Juntar PDF</h3>
+        <p class="text-gray-300">Ferramenta para arquivos em PDF: Esta ferramenta permite visualizar, editar e compartilhar arquivos PDF de maneira fácil e rápida, oferecendo recursos como extração de texto, junção de documentos e adição de anotações..</p>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="servico4.html" class="block bg-gray-800 p-6 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105 transition animate-fadeIn" style="animation-delay: 0.3s;">
+        <h3 class="text-xl font-semibold text-white mb-4">Serviço 4</h3>
+        <p class="text-gray-300">Descrição breve do Serviço 4. Clique para saber mais.</p>
+      </a>
+      
+      <!-- Card 5 -->
+      <a href="servico5.html" class="block bg-gray-800 p-6 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105 transition animate-fadeIn" style="animation-delay: 0.4s;">
+        <h3 class="text-xl font-semibold text-white mb-4">Serviço 5</h3>
+        <p class="text-gray-300">Descrição breve do Serviço 5. Clique para saber mais.</p>
+      </a>
+      
+      <!-- Card 6 -->
+      <a href="servico6.html" class="block bg-gray-800 p-6 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105 transition animate-fadeIn" style="animation-delay: 0.5s;">
+        <h3 class="text-xl font-semibold text-white mb-4">Serviço 6</h3>
+        <p class="text-gray-300">Descrição breve do Serviço 6. Clique para saber mais.</p>
+      </a>
+    
+    </div>
+  </section>
+</body>
+</html>

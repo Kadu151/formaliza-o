@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Texto Jurídico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 p-4">
+    <div class="container mx-auto flex justify-between">
+      <a href="index.html" class="text-white font-bold">Home</a>
+      <div class="space-x-4">
+        <a href="index.html" class="text-gray-300 hover:text-white">Início</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto mt-8">
+    <h1 class="text-2xl font-bold text-center mb-6">Leitor de Documentos PDF</h1>
+
+    <!-- Upload do PDF -->
+    <div class="flex flex-col items-center">
+      <input type="file" id="pdfUpload" accept="application/pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-gray-300 hover:file:bg-gray-600">
+      <button onclick="performOCR()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow-lg">
+        Extrair Texto do PDF
+      </button>
+    </div>
+
+    <!-- Área para exibir o resultado -->
+    <div id="output" class="mt-6 p-4 bg-gray-700 rounded-lg shadow-inner max-h-96 overflow-y-auto text-gray-100">
+      <p class="text-center text-gray-400">O texto extraído aparecerá aqui...</p>
+    </div>
+
+    <!-- Botão de copiar texto -->
+    <!-- Botão de copiar texto -->
+<div class="flex justify-end mt-4">
+    <button onclick="copyText()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded shadow-lg flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
+      </svg>
+      Copiar Texto
+    </button>
+  </div>
+  
+
+  <!-- Script PDF.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+  <!-- Script Tesseract.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+
+  <script src="ocr.js"></script>
+
+</body>
+</html>
