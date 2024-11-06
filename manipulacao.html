@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Texto Jurídico</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-</head>
-<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
-
-  <!-- Navbar -->
-  <nav class="bg-gray-800 p-4">
-    <div class="container mx-auto flex justify-between">
-      <a href="index.html" class="text-white font-bold">Home</a>
-      <div class="space-x-4">
-        <a href="index.html" class="text-gray-300 hover:text-white">Início</a>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Texto Jurídico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  </head>
+  <body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between">
+        <a href="index.html" class="text-white font-bold">Home</a>
+        <div class="space-x-4">
+          <a href="index.html" class="text-gray-300 hover:text-white">Início</a>
+        </div>
       </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto mt-8">
+      <h1 class="text-2xl font-bold text-center mb-6">Manipulação PDF</h1>
+      <!-- Dropdown for Section Selection -->
+      <label for="sectionSelect" class="block text-lg font-semibold mb-2">Escolha uma Seção:</label>
+      <select id="sectionSelect"
+              class="block w-full mb-4 p-2 bg-gray-700 text-gray-200">
+        <option value="">-- Selecione --</option>
+        <option value="vendedor">Vendedor</option>
+        <option value="imovel">Imóvel</option>
+        <option value="consorciado">Consorciado</option>
+      </select>
+      <!-- File Input Cards -->
+      <div id="fileInputs" class="grid grid-cols-1 gap-4">
+        <!-- Cards will be dynamically generated here -->
+      </div>
+      <div id="mergeBtn"
+           class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-4 flex items-center justify-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 24 24"
+             strokeWidth
+             1.5
+             stroke="currentColor"
+             class="size-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+      </div>
+      <!-- Download Link -->
+      <a id="downloadLink"
+         href="#"
+         class="hidden mt-4 text-center text-blue-400 hover:text-blue-500"></a>
     </div>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto mt-8">
-    <h1 class="text-2xl font-bold text-center mb-6">Manipulação PDF</h1>
-
-    <!-- Dropdown for Section Selection -->
-    <label for="sectionSelect" class="block text-lg font-semibold mb-2">Escolha uma Seção:</label>
-    <select id="sectionSelect" class="block w-full mb-4 p-2 bg-gray-700 text-gray-200">
-      <option value="">-- Selecione --</option>
-      <option value="vendedor">Vendedor</option>
-      <option value="imovel">Imóvel</option>
-      <option value="consorciado">Consorciado</option>
-    </select>
-
-    <!-- File Input Cards -->
-    <div id="fileInputs" class="grid grid-cols-1 gap-4">
-      <!-- Cards will be dynamically generated here -->
-    </div>
-
-    <div id="mergeBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-4 flex items-center justify-center cursor-pointer">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="size-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-      </svg>
-    </div>
-
-    <!-- Download Link -->
-    <a id="downloadLink" href="#" class="hidden mt-4 text-center text-blue-400 hover:text-blue-500"></a>
-  </div>
-
-  <script>
+    <script>
     const fileInputsContainer = document.getElementById('fileInputs');
     const sectionSelect = document.getElementById('sectionSelect');
 
@@ -120,12 +123,24 @@
       }
 
       try {
+        // Cria um novo PDF para mesclar os outros PDFs
         const mergedPdf = await PDFLib.PDFDocument.create();
+        
+        // Adiciona as páginas de cada documento selecionado
         for (const pdfDoc of pdfDocs) {
           const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
           copiedPages.forEach((page) => mergedPdf.addPage(page));
         }
 
+        // Adiciona metadados para conformidade básica com o PDF/A
+        mergedPdf.setTitle('Documento Mesclado PDF/A');
+        mergedPdf.setAuthor('Seu Nome');
+        mergedPdf.setSubject('Exemplo de PDF Mesclado');
+        mergedPdf.setKeywords(['PDF/A', 'Documentos', 'Exemplo']);
+        mergedPdf.setCreationDate(new Date());
+        mergedPdf.setModificationDate(new Date());
+
+        // Salva o PDF
         const pdfBytes = await mergedPdf.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
@@ -140,6 +155,6 @@
         alert('Ocorreu um erro ao mesclar os arquivos. Verifique o console para mais detalhes.');
       }
     });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
