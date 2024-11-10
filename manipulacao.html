@@ -1,160 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Texto Jurídico</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-  </head>
-  <body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
-    <!-- Navbar -->
-    <nav class="bg-gray-800 p-4">
-      <div class="container mx-auto flex justify-between">
-        <a href="index.html" class="text-white font-bold">Home</a>
-        <div class="space-x-4">
-          <a href="index.html" class="text-gray-300 hover:text-white">Início</a>
-        </div>
-      </div>
-    </nav>
-    <!-- Main Content -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto mt-8">
-      <h1 class="text-2xl font-bold text-center mb-6">Manipulação PDF</h1>
-      <!-- Dropdown for Section Selection -->
-      <label for="sectionSelect" class="block text-lg font-semibold mb-2">Escolha uma Seção:</label>
-      <select id="sectionSelect"
-              class="block w-full mb-4 p-2 bg-gray-700 text-gray-200">
-        <option value="">-- Selecione --</option>
-        <option value="vendedor">Vendedor</option>
-        <option value="imovel">Imóvel</option>
-        <option value="consorciado">Consorciado</option>
-      </select>
-      <!-- File Input Cards -->
-      <div id="fileInputs" class="grid grid-cols-1 gap-4">
-        <!-- Cards will be dynamically generated here -->
-      </div>
-      <div id="mergeBtn"
-           class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mt-4 flex items-center justify-center cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             fill="none"
-             viewBox="0 0 24 24"
-             strokeWidth
-             1.5
-             stroke="currentColor"
-             class="size-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Texto Jurídico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-200 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-800 bg-opacity-90 p-4 shadow-lg backdrop-blur-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-teal-400 text-2xl font-bold tracking-wide flex items-center">
+        <!-- Ícone da Home -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h16v-5h-16v5z" />
         </svg>
+        OurWork      </a>
+      <div class="space-x-6 flex items-center">
+        <!-- Links com ícones -->
+        <a href="index.html" class="text-gray-300 hover:text-teal-400 flex items-center transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9L12 3L21 9V21C21 21.553 20.553 22 20 22H4C3.447 22 3 21.553 3 21V9Z"></path>
+            <path d="M9 22V12H15V22"></path>
+          </svg>          
+            Início
+          </a>
+          <a href="qualificacao.html" class="text-gray-300 hover:text-teal-400 flex items-center transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2H18C18.553 2 19 2.447 19 3V21C19 21.553 18.553 22 18 22H6C5.447 22 5 21.553 5 21V3C5 2.447 5.447 2 6 2Z"></path>
+                <path d="M6 2L18 2V8L6 8V2Z"></path>
+              </svg> 
+            Qualificação
+          </a>
+          <a href="ocr.html" class="text-gray-300 hover:text-teal-400 flex items-center transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 2H16C16.553 2 17 2.447 17 3V17C17 17.553 16.553 18 16 18H4C3.447 18 3 17.553 3 17V3C3 2.447 3.447 2 4 2ZM4 3V15H16V3H4ZM4 15V21H16V15H4Z"></path>
+              </svg>
+            Leitura de Docs
+          </a>
       </div>
-      <!-- Download Link -->
-      <a id="downloadLink"
-         href="#"
-         class="hidden mt-4 text-center text-blue-400 hover:text-blue-500"></a>
     </div>
-    <script>
-    const fileInputsContainer = document.getElementById('fileInputs');
-    const sectionSelect = document.getElementById('sectionSelect');
+  </nav>
 
-    const sections = {
-      vendedor: [
-        "PDF 1: Documento de Identidade do Vendedor",
-        "PDF 2: Certidão da Receita",
-        "PDF 3: Cndt",
-        "PDF 4: Certidão de nascimento/casamento",
-        "PDF 5: Adicionais"
-      ],
-      imovel: [
-        "PDF 1: Matricula do Imóvel",
-        "PDF 2: IPTU ou Certidão de valor venal",
-        "PDF 3: Certidão negativa",
-        "PDF 4: Ata do condomínio",
-        "PDF 5: Declaração do síndico",
-        "PDF 6: Adicionais"
-      ],
-      consorciado: [
-        "PDF 1: Documento de Identidade do consorciado",
-        "PDF 2: Certidão da Receita",
-        "PDF 3: Cndt",
-        "PDF 4: Certidão de nascimento/casamento",
-        "PDF 5: Adicionais"
-      ]
-    };
+  <!-- Main Content -->
+  <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-2xl mx-auto mt-10 text-center transition-all duration-200">
+    <h1 class="text-3xl font-bold text-center mb-8 text-teal-400">Manipulação de PDF</h1>
 
-    sectionSelect.addEventListener('change', (event) => {
-      const selectedSection = event.target.value;
-      fileInputsContainer.innerHTML = ''; // Limpa os campos anteriores
+    <!-- Dropdown for Section Selection -->
+    <label for="sectionSelect" class="block text-lg font-semibold mb-2">Escolha uma Seção:</label>
+    <select id="sectionSelect" class="block w-full p-3 mb-6 bg-gray-700 text-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400">
+      <option value="">-- Selecione --</option>
+      <option value="vendedor">Vendedor</option>
+      <option value="imovel">Imóvel</option>
+      <option value="consorciado">Consorciado</option>
+    </select>
 
-      if (sections[selectedSection]) {
-        sections[selectedSection].forEach((docLabel, index) => {
-          const card = document.createElement('div');
-          card.className = 'bg-gray-700 p-4 rounded-lg shadow-md';
-          card.innerHTML = `  
-            <label for="pdfFiles${index + 1}" class="block text-lg font-semibold mb-2">${docLabel}</label>
-            <input type="file" id="pdfFiles${index + 1}" class="block w-full text-gray-900" accept="application/pdf">
-          `;
-          fileInputsContainer.appendChild(card);
-        });
-      }
-    });
+    <!-- File Input Cards -->
+    <div id="fileInputs" class="grid grid-cols-1 gap-4">
+      <!-- Cards will be dynamically generated here -->
+    </div>
 
-    document.getElementById('mergeBtn').addEventListener('click', async () => {
-      const pdfDocs = [];
-      const fileInputs = fileInputsContainer.querySelectorAll('input[type="file"]');
+    <!-- Merge Button -->
+    <!-- Botão de Juntar PDF -->
+<button id="mergeBtn" class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-lg mt-6 font-semibold transition duration-200 transform hover:scale-105">
+  <div class="flex items-center justify-center space-x-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    </svg>
+    <span>Juntar PDF</span>
+  </div>
+</button>
 
-      for (const fileInput of fileInputs) {
-        const files = fileInput.files;
-        if (files.length === 0) {
-          continue; // Ignora se não há arquivos selecionados neste campo
-        }
+<!-- Link de Download, inicialmente oculto -->
+<a id="downloadLink" href="#" download style="display: none;">Baixar PDF Mesclado</a>
 
-        for (const file of files) {
-          if (file.type !== 'application/pdf') {
-            alert(`O arquivo ${file.name} não é um PDF válido.`);
-            continue; // Ignora arquivos que não são PDFs
-          }
-          const arrayBuffer = await file.arrayBuffer();
-          const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-          pdfDocs.push(pdfDoc);
-        }
-      }
 
-      if (pdfDocs.length === 0) {
-        alert('Por favor, selecione pelo menos um arquivo PDF.');
-        return;
-      }
+  </div>
 
-      try {
-        // Cria um novo PDF para mesclar os outros PDFs
-        const mergedPdf = await PDFLib.PDFDocument.create();
-        
-        // Adiciona as páginas de cada documento selecionado
-        for (const pdfDoc of pdfDocs) {
-          const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
-          copiedPages.forEach((page) => mergedPdf.addPage(page));
-        }
-
-        // Adiciona metadados para conformidade básica com o PDF/A
-        mergedPdf.setTitle('Documento Mesclado PDF/A');
-        mergedPdf.setAuthor('Seu Nome');
-        mergedPdf.setSubject('Exemplo de PDF Mesclado');
-        mergedPdf.setKeywords(['PDF/A', 'Documentos', 'Exemplo']);
-        mergedPdf.setCreationDate(new Date());
-        mergedPdf.setModificationDate(new Date());
-
-        // Salva o PDF
-        const pdfBytes = await mergedPdf.save();
-        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const downloadLink = document.getElementById('downloadLink');
-
-        downloadLink.href = url;
-        downloadLink.download = 'merged.pdf';
-        downloadLink.style.display = 'block';
-        downloadLink.textContent = 'Baixar PDF Mesclado';
-      } catch (error) {
-        console.error('Erro ao mesclar PDFs:', error);
-        alert('Ocorreu um erro ao mesclar os arquivos. Verifique o console para mais detalhes.');
-      }
-    });
-    </script>
-  </body>
+  <script src="manipulacao.js"></script>
+</body>
 </html>
