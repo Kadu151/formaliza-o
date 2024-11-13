@@ -45,7 +45,8 @@ function generateText() {
     const spousePhone = document.getElementById('spousePhone').value;
     const spouseBirthdate = document.getElementById('spouseBirthdate').value;
     const spousemarriageregime = document.getElementById('spousemarriageregime').value;
-    
+    const spousemarriagedate = document.getElementById('spousemarriagedate').value;
+
     // Verifique os valores capturados
     console.log('spouseName:', spouseName);
     console.log('spouseFiliation:', spouseFiliation);
@@ -53,6 +54,7 @@ function generateText() {
     console.log('spousePhone:', spousePhone);
     console.log('spouseBirthdate:', spouseBirthdate);
     console.log('spousemarriageregime:', spousemarriageregime);
+    console.log('spousemarriagedate:', spousemarriagedate);
     
     let generatedText = '';
     
@@ -65,7 +67,7 @@ function generateText() {
         if (maritalStatus === 'casado(a)') {
             generatedText += `
                 <br><br> 
-               De um lado, como <strong>OUTORGADO(a,as,os) COMPRADOR(a,es, DEVEDOR(a,es) FIDUCIANTE(s) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, e sua cônjuge <strong>${spouseName}</strong>, ${spouseNationality}, ${spouseProfession}, portador(a) da cédula de identidade RG sob nº ${spouseRg}, inscrit0(a) no CPF/MF de nº ${spouseCpf}, filho(a) de ${spouseFiliation}, e-mail: ${spouseEmail}, telefone: ${spousePhone}, maior, nascida em ${spouseBirthdate} conforme declarou, casados no regime de ${spousemarriageregime} com matrícula nº ${certificate}, expedida pelo oficial ${registryOffice}, residentes e domiciliados na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
+               De um lado, como <strong>OUTORGADO(a,as,os) COMPRADOR(a,es, DEVEDOR(a,es) FIDUCIANTE(s) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, e sua cônjuge <strong>${spouseName}</strong>, ${spouseNationality}, ${spouseProfession}, portador(a) da cédula de identidade RG sob nº ${spouseRg}, inscrit0(a) no CPF/MF de nº ${spouseCpf}, filho(a) de ${spouseFiliation}, e-mail: ${spouseEmail}, telefone: ${spousePhone}, maior, nascido(a) em ${spouseBirthdate} conforme declarou, casados no regime de ${spousemarriageregime}, em ${spousemarriagedate} (ANTES/APOS vigencia da Lei nº 6.515/77) com matrícula nº ${certificate}, expedida pelo oficial ${registryOffice}, residentes e domiciliados na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
             `;
         }
     } else if (role === 'vendedor') {
@@ -75,7 +77,7 @@ function generateText() {
         if (maritalStatus === 'casado(a)') {
             generatedText += `
                 <br><br> 
-              De um lado, como <strong>OUTORGANTE(s) VENDEDOR(a,es,as)  – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, e sua cônjuge <strong>${spouseName}</strong>, ${spouseNationality}, ${spouseProfession}, portador(a) da cédula de identidade RG sob nº ${spouseRg}, inscrit0(a) no CPF/MF de nº ${spouseCpf}, filho(a) de ${spouseFiliation}, e-mail: ${spouseEmail}, telefone: ${spousePhone}, maior, nascido(a) em ${spouseBirthdate} conforme declarou, casados no regime de ${spousemarriageregime} com matrícula nº ${certificate}, expedida pelo oficial ${registryOffice}, residentes e domiciliados na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
+              De um lado, como <strong>OUTORGANTE(s) VENDEDOR(a,es,as)  – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, e sua cônjuge <strong>${spouseName}</strong>, ${spouseNationality}, ${spouseProfession}, portador(a) da cédula de identidade RG sob nº ${spouseRg}, inscrit0(a) no CPF/MF de nº ${spouseCpf}, filho(a) de ${spouseFiliation}, e-mail: ${spouseEmail}, telefone: ${spousePhone}, maior, nascido(a) em ${spouseBirthdate} conforme declarou, casados no regime de ${spousemarriageregime}, em ${spousemarriagedate} (ANTES/APOS vigencia da Lei nº 6.515/77) com matrícula nº ${certificate}, expedida pelo oficial ${registryOffice}, residentes e domiciliados na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
             `;
         }
     } else if (role === 'fiador') {
@@ -85,7 +87,7 @@ function generateText() {
         if (maritalStatus === 'casado(a)') {
             generatedText += `
                 <br><br> 
-            De um lado, como <strong>FIADOR(a,es)   – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, e sua cônjuge <strong>${spouseName}</strong>, ${spouseNationality}, ${spouseProfession}, portador(a) da cédula de identidade RG sob nº ${spouseRg}, inscrito(a) no CPF/MF de nº ${spouseCpf}, filho(a) de ${spouseFiliation}, e-mail: ${spouseEmail}, telefone: ${spousePhone}, maior, nascido(a) em ${spouseBirthdate} conforme declarou, casados no regime de ${spousemarriageregime} com matrícula nº ${certificate}, expedida pelo oficial ${registryOffice}, residentes e domiciliados na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
+            De um lado, como <strong>FIADOR(a,es)   –${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, e sua cônjuge <strong>${spouseName}</strong>, ${spouseNationality}, ${spouseProfession}, portador(a) da cédula de identidade RG sob nº ${spouseRg}, inscrit0(a) no CPF/MF de nº ${spouseCpf}, filho(a) de ${spouseFiliation}, e-mail: ${spouseEmail}, telefone: ${spousePhone}, maior, nascido(a) em ${spouseBirthdate} conforme declarou, casados no regime de ${spousemarriageregime}, em ${spousemarriagedate} (ANTES/APOS vigencia da Lei nº 6.515/77) com matrícula nº ${certificate}, expedida pelo oficial ${registryOffice}, residentes e domiciliados na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
             `;
         }
     
