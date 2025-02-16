@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Balanço Patrimonial e DRE</title>
+    <script src="test.js"></script> <!-- Alterei para um arquivo .js, já que .py não é suportado em HTML diretamente -->
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <!-- Barra de navegação lateral -->
+    <nav>
+        <h2></h2>
+        <ul>
+            <li><a href="index.html">Home</a>
+                <ul>
+                    <li><a href="manipulacao.html">Manipulação de PDF</a></li>
+                    <li><a href="ocr.html">Leitura de Docs</a></li>
+                </ul>
+            </li>
+            <li><a href="qualificacao.html">Qualificação</a>
+                <ul>
+                    <li><a href="chat.html">ChatBea</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+        <h1>Análise de Balanço Patrimonial e DRE</h1>
+
+        <div class="form-container">
+            <label for="empresa">Nome da Empresa: </label>
+            <input type="text" id="empresa" name="empresa" placeholder="Digite o nome da empresa" />
+        </div>
+
+        <h2>Balanço Patrimonial</h2>
+        <table id="balanco">
+            <tr>
+                <th>Descrição</th><th>ANO VIGENTE</th><th>ANO ANTERIOR</th>
+            </tr>
+            <tr>
+                <td>Ativo Circulante</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Disponível</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Estoque</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Ativo Não Circulante</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Passivo Circulante</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Passivo Não Circulante</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Patrimonio Liquido</td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td><input type="text" oninput="formatarInput(event)"></td>
+            </tr>
+        </table>
+
+        <button onclick="exibirResultado()">Resultado</button>
+
+        <!-- Modal -->
+        <div id="resultadoModal" style="display: none;">
+            <div id="modalContent">
+                <h2>Resultado do Cálculo</h2>
+                <p id="resultadoTexto"></p>
+                <button id="fecharModal" onclick="fecharModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>
