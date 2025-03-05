@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise de Balanço Patrimonial e DRE</title>
-    <script src="test.js"></script> <!-- Alterei para um arquivo .js, já que .py não é suportado em HTML diretamente -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="test.js"></script> 
     <link rel="stylesheet" href="test.css">
 </head>
 <body>
@@ -34,6 +36,10 @@
             <label for="empresa">Nome da Empresa: </label>
             <input type="text" id="empresa" name="empresa" placeholder="Digite o nome da empresa" />
         </div>
+        <div class="form-container">
+            <label for="atividade">Atividade da Empresa: </label>
+            <input type="text" id="atividade" name="atividade" placeholder="Digite a atividade da empresa" />
+        </div>
 
         <h2>Balanço Patrimonial</h2>
         <table id="balanco">
@@ -41,51 +47,118 @@
                 <th>Descrição</th><th>ANO VIGENTE</th><th>ANO ANTERIOR</th>
             </tr>
             <tr>
-                <td>Ativo Circulante</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Ativo Circulante (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
             <tr>
-                <td>Disponível</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Disponível (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
             <tr>
-                <td>Estoque</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Estoque (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
             <tr>
-                <td>Ativo Não Circulante</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Ativo Não Circulante (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
             <tr>
-                <td>Passivo Circulante</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Passivo Circulante (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
             <tr>
-                <td>Passivo Não Circulante</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Passivo Não Circulante (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
             <tr>
-                <td>Patrimonio Liquido</td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
-                <td><input type="text" oninput="formatarInput(event)"></td>
+                <td>Patrimônio Líquido (BP)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
             </tr>
-        </table>
+            <tr>
+                <td>Vendas Liquidas (DRE)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Lucro Bruto (DRE)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Lucro Operacional (DRE)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
+            </tr>
+            <tr>
+                <td>Lucro Liquido (DRE)</td>
+                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
+                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
+            </tr>
+            
+        </table>   
+        
+        <button onclick="atualizarGrafico()">Atualizar Gráfico</button>
+        <canvas id="graficoFinanceiro"></canvas>
+       <button onclick="exibirResultado()">Resultado</button>
+        <canvas id="graficoFinanceiro"></canvas>
 
-        <button onclick="exibirResultado()">Resultado</button>
+        <script>
+            let ctx = document.getElementById('graficoFinanceiro').getContext('2d');
 
-        <!-- Modal -->
-        <div id="resultadoModal" style="display: none;">
-            <div id="modalContent">
-                <h2>Resultado do Cálculo</h2>
-                <p id="resultadoTexto"></p>
-                <button id="fecharModal" onclick="fecharModal()">Fechar</button>
-            </div>
+            // Função para capturar valores da tabela
+            function capturarValores(classe) {
+                return Array.from(document.querySelectorAll("." + classe)).map(input => Number(input.value) || 0);
+            }
+
+            // Dados iniciais do gráfico
+            let dadosFinanceiros = {
+                labels: ['Ativo Circulante', 'Disponível', 'Estoque', 'Ativo Não Circulante', 'Passivo Circulante', 'Passivo Não Circulante', 'Patrimônio Líquido', 'Vendas Liquidas (DRE)','Lucro Bruto (DRE)','Lucro Operacional (DRE)','Lucro Liquido (DRE)'],
+                datasets: [{
+                    label: 'Ano Atual',
+                    data: capturarValores("anoAtual"),
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Ano Anterior',
+                    data: capturarValores("anoAnterior"),
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            let grafico = new Chart(ctx, {
+                type: 'bar',
+                data: dadosFinanceiros,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Função para atualizar o gráfico ao clicar no botão
+            function atualizarGrafico() {
+                grafico.data.datasets[0].data = capturarValores("anoAtual");
+                grafico.data.datasets[1].data = capturarValores("anoAnterior");
+                grafico.update();
+            }
+        </script>
+        <!-- Área onde os resultados serão exibidos -->
+        <div id="resultadoContainer">
+            <h2>Resultado do Cálculo</h2>
+            <p id="resultadoTexto"></p>
         </div>
     </div>
 
