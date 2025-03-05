@@ -61,24 +61,24 @@ function exibirResultado() {
     // Exibindo os resultados no modal
     let resultadoTexto = `
         <strong>Índices do Ano Atual:</strong><br>
-        Corrente: Valor: ${correnteAtual.valor}, Classificação: ${correnteAtual.classificacao}<br>
-        Imediata: Valor: ${imediataAtual.valor}, Classificação: ${imediataAtual.classificacao}<br>
-        Geral: Valor: ${geralAtual.valor}, Classificação: ${geralAtual.classificacao}<br>
-        Seca: Valor: ${secaAtual.valor}, Classificação: ${secaAtual.classificacao}<br><br>
-        <strong>Estrutura de Capital do Ano Atual:</strong><br>
-        Grau de Endividamento: Valor: ${grauEndividamentoAtual.valor}, Classificação: ${grauEndividamentoAtual.classificacao}<br>
-        Part. Terceiros: Valor: ${partTerceirosAtual.valor}, Classificação: ${partTerceirosAtual.classificacao}<br>
-        Part. Exigível C/Prazo: Valor: ${partExigivelCurtoPrazoAtual.valor}, Classificação: ${partExigivelCurtoPrazoAtual.classificacao}<br><br>
+        <br>A empresa consegue pagar seus compromissos de curto prazo utilizando os seus recursos próprios de curto prazo?: Valor: ${correnteAtual.valor}, Classificação: ${correnteAtual.classificacao}<br>
+       <br> A empresa consegue pagar seus compromissos de curto utilizando apenas o que tem no caixa e no banco (conta corrente)?: Valor: ${imediataAtual.valor}, Classificação: ${imediataAtual.classificacao}<br>
+       <br> A empresa consegue pagar seus compromissos de curto prazo e longo prazo?: Valor: ${geralAtual.valor}, Classificação: ${geralAtual.classificacao}<br>
+       <br> A empresa consegue pagar seus compromissos de curto prazo utilizando os seus recursos de curto prazo sem os seus estoques?: Valor: ${secaAtual.valor}, Classificação: ${secaAtual.classificacao}<br><br>
+       <br> <strong>Estrutura de Capital do Ano Atual:</strong><br>
+       <br> Grau de Endividamento: Valor: ${grauEndividamentoAtual.valor}, Classificação: ${grauEndividamentoAtual.classificacao}<br>
+       <br> Part. Terceiros: Valor: ${partTerceirosAtual.valor}, Classificação: ${partTerceirosAtual.classificacao}<br>
+       <br> Part. Exigível C/Prazo: Valor: ${partExigivelCurtoPrazoAtual.valor}, Classificação: ${partExigivelCurtoPrazoAtual.classificacao}<br><br>
         
-        <strong>Índices do Ano Anterior:</strong><br>
-        Corrente: Valor: ${correnteAnterior.valor}, Classificação: ${correnteAnterior.classificacao}<br>
-        Imediata: Valor: ${imediataAnterior.valor}, Classificação: ${imediataAnterior.classificacao}<br>
-        Geral: Valor: ${geralAnterior.valor}, Classificação: ${geralAnterior.classificacao}<br>
-        Seca: Valor: ${secaAnterior.valor}, Classificação: ${secaAnterior.classificacao}<br><br>
-        <strong>Estrutura de Capital do Ano Anterior:</strong><br>
-        Grau de Endividamento: Valor: ${grauEndividamentoAnterior.valor}, Classificação: ${grauEndividamentoAnterior.classificacao}<br>
-        Part. Terceiros: Valor: ${partTerceirosAnterior.valor}, Classificação: ${partTerceirosAnterior.classificacao}<br>
-        Part. Exigível C/Prazo: Valor: ${partExigivelCurtoPrazoAnterior.valor}, Classificação: ${partExigivelCurtoPrazoAnterior.classificacao}
+        <br><strong>Índices do Ano Anterior:</strong><br>
+       <br> Corrente: Valor: ${correnteAnterior.valor}, Classificação: ${correnteAnterior.classificacao}<br>
+       <br> Imediata: Valor: ${imediataAnterior.valor}, Classificação: ${imediataAnterior.classificacao}<br>
+       <br> Geral: Valor: ${geralAnterior.valor}, Classificação: ${geralAnterior.classificacao}<br>
+       <br> Seca: Valor: ${secaAnterior.valor}, Classificação: ${secaAnterior.classificacao}<br><br>
+       <br> <strong>Estrutura de Capital do Ano Anterior:</strong><br>
+      <br>  Grau de Endividamento: Valor: ${grauEndividamentoAnterior.valor}, Classificação: ${grauEndividamentoAnterior.classificacao}<br>
+       <br> Part. Terceiros: Valor: ${partTerceirosAnterior.valor}, Classificação: ${partTerceirosAnterior.classificacao}<br>
+       <br> Part. Exigível C/Prazo: Valor: ${partExigivelCurtoPrazoAnterior.valor}, Classificação: ${partExigivelCurtoPrazoAnterior.classificacao}
     `;
     
     // Exibindo o modal com o resultado
