@@ -1,5 +1,5 @@
-   /* Paleta de Cores */
-   :root {
+/* Paleta de Cores */
+:root {
     --primary-bg-color: #1e2a36; /* Azul Escuro */
     --secondary-bg-color: #2f3b47; /* Cinza Azulado */
     --primary-color: #00aaff; /* Azul Claro */
@@ -16,10 +16,11 @@
     --modal-text-color: #eaeaea;
 }
 
+/* Corpo da página */
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    background-color: #1e2a36;
+    background-color: var(--primary-bg-color);
     color: var(--text-color);
     margin: 0;
     height: 100vh;
@@ -125,4 +126,28 @@ button:hover {
 #modalContent {
     max-width: 500px;
     margin: 0 auto;
+}
+
+/* Estilo do container de resultados */
+#resultadoContainer {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--secondary-bg-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+}
+
+#resultadoContainer h2 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#resultadoTexto {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
 }
