@@ -4,164 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise de Balanço Patrimonial e DRE</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script src="test.js"></script> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="test.css">
+    <script src="test.js" defer></script>
 </head>
 <body>
-    <!-- Barra de navegação lateral -->
-    <nav>
-        <h2></h2>
-        <ul>
-            <li><a href="index.html">Home</a>
-                <ul>
-                    <li><a href="manipulacao.html">Manipulação de PDF</a></li>
-                    <li><a href="ocr.html">Leitura de Docs</a></li>
-                </ul>
-            </li>
-            <li><a href="qualificacao.html">Qualificação</a>
-                <ul>
-                    <li><a href="https://chatgpt.com/">Chat</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    <div class="container">
+        <!-- Barra de navegação lateral -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Menu</h2>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="manipulacao.html">Manipulação de PDF</a></li>
+                <li><a href="ocr.html">Leitura de Docs</a></li>
+                <li><a href="qualificacao.html">Qualificação</a></li>
+            </ul>
+        </nav>
 
-    <!-- Conteúdo principal -->
-    <div class="content">
-        <h1>Análise de Balanço Patrimonial e DRE</h1>
+        <!-- Conteúdo principal -->
+        <main class="content">
+            <header>
+                <h1>Análise de Balanço Patrimonial e DRE</h1>
+            </header>
 
-        <div class="form-container">
-            <label for="empresa">Nome da Empresa: </label>
-            <input type="text" id="empresa" name="empresa" placeholder="Digite o nome da empresa" />
-        </div>
-        <div class="form-container">
-            <label for="atividade">Atividade da Empresa: </label>
-            <input type="text" id="atividade" name="atividade" placeholder="Digite a atividade da empresa" />
-        </div>
-
-        <h2>Balanço Patrimonial</h2>
-        <table id="balanco">
-            <tr>
-                <th>Descrição</th><th>ANO VIGENTE</th><th>ANO ANTERIOR</th>
-            </tr>
-            <tr>
-                <td>Ativo Circulante (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Disponível (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Estoque (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Ativo Não Circulante (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Passivo Circulante (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Passivo Não Circulante (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Patrimônio Líquido (BP)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Vendas Liquidas (DRE)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Lucro Bruto (DRE)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Lucro Operacional (DRE)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            <tr>
-                <td>Lucro Liquido (DRE)</td>
-                <td><input type="text" class="anoAtual" oninput="formatarInput(event)"></td>
-                <td><input type="text" class="anoAnterior" oninput="formatarInput(event)"></td>
-            </tr>
-            
-        </table>   
-        
-        <button onclick="atualizarGrafico()">Atualizar Gráfico</button>
-        <canvas id="graficoFinanceiro"></canvas>
-       <button onclick="exibirResultado()">Resultado</button>
-        <canvas id="graficoFinanceiro"></canvas>
-
-        <script>
-            let ctx = document.getElementById('graficoFinanceiro').getContext('2d');
-
-            // Função para capturar valores da tabela
-            function capturarValores(classe) {
-                return Array.from(document.querySelectorAll("." + classe)).map(input => Number(input.value) || 0);
-            }
-
-            // Dados iniciais do gráfico
-            let dadosFinanceiros = {
-                labels: ['Ativo Circulante', 'Disponível', 'Estoque', 'Ativo Não Circulante', 'Passivo Circulante', 'Passivo Não Circulante', 'Patrimônio Líquido', 'Vendas Liquidas (DRE)','Lucro Bruto (DRE)','Lucro Operacional (DRE)','Lucro Liquido (DRE)'],
-                datasets: [{
-                    label: 'Ano Atual',
-                    data: capturarValores("anoAtual"),
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }, {
-                    label: 'Ano Anterior',
-                    data: capturarValores("anoAnterior"),
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            };
-
-            let grafico = new Chart(ctx, {
-                type: 'bar',
-                data: dadosFinanceiros,
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // Função para atualizar o gráfico ao clicar no botão
-            function atualizarGrafico() {
-                grafico.data.datasets[0].data = capturarValores("anoAtual");
-                grafico.data.datasets[1].data = capturarValores("anoAnterior");
-                grafico.update();
-            }
-        </script>
-        <!-- Área onde os resultados serão exibidos -->
-        <div id="resultadoContainer">
-            <h2>Resultado do Cálculo</h2>
-            <p id="resultadoTexto"></p>
-        </div>
+           <!-- Formulário de entrada -->
+<section class="form-section flex space-x-6">
+    <div class="form-container flex flex-col w-1/2">
+        <label for="empresa" class="block text-lg font-medium text-gray-800 mb-2">Nome da Empresa:</label>
+        <input
+            type="text"
+            id="empresa"
+            name="empresa"
+            placeholder="Digite o nome da empresa"
+            class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out"
+        />
     </div>
 
-    <script src="test.js"></script>
+    <div class="form-container flex flex-col w-1/2">
+        <label for="atividade" class="block text-lg font-medium text-gray-800 mb-2">Atividade da Empresa:</label>
+        <input
+            type="text"
+            id="atividade"
+            name="atividade"
+            placeholder="Digite a atividade da empresa"
+            class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out"
+        />
+    </div>
+</section>
+
+            <!-- Tabela Balanço Patrimonial e DRE -->
+<section class="table-section">
+    <h2>Balanço Patrimonial</h2>
+    <table id="balanco">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>ANO VIGENTE</th>
+                <th>ANO ANTERIOR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ativo Circulante -->
+            <tr class="group-row">
+                <td colspan="3">
+                    <button class="toggle-btn" onclick="toggleGroup('ativo-circulante')">Ativo Circulante ▼</button>
+                </td>
+            </tr>
+            <tr class="toggle-content ativo-circulante"><td>Ativo Circulante</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-circulante"><td>Disponível</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-circulante"><td>Estoque</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-circulante"><td>Contas a Receber</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-circulante"><td>Impostos a Recuperar</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-circulante"><td>Outros Créditos</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-circulante"><td>Caixas e Equivalentes de Caixa</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+
+            <!-- Ativo Não Circulante -->
+            <tr class="group-row">
+                <td colspan="3">
+                    <button class="toggle-btn" onclick="toggleGroup('ativo-nao-circulante')">Ativo Não Circulante ▼</button>
+                </td>
+            </tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Ativo Não Circulante</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Imobilizado</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Bens móveis</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Bens imobilizados</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Outros ativos</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Intangível</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content ativo-nao-circulante"><td>Aplicações financeiras</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+
+            <!-- Passivo Circulante -->
+            <tr class="group-row">
+                <td colspan="3">
+                    <button class="toggle-btn" onclick="toggleGroup('passivo-circulante')">Passivo Circulante ▼</button>
+                </td>
+            </tr>
+            <tr class="toggle-content passivo-circulante"><td>Passivo Circulante</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content passivo-circulante"><td>Financiamento, Empréstimos</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content passivo-circulante"><td>Fornecedores</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content passivo-circulante"><td>Outros</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+
+            <!-- Passivo Não Circulante -->
+            <tr class="group-row">
+                <td colspan="3">
+                    <button class="toggle-btn" onclick="toggleGroup('passivo-nao-circulante')">Passivo Não Circulante ▼</button>
+                </td>
+            </tr>
+            <tr class="toggle-content passivo-nao-circulante"><td>Passivo Não Circulante</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content passivo-nao-circulante"><td>Financiamentos a longo prazo</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content passivo-nao-circulante"><td>Parcelamento de impostos</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+
+            <!-- Patrimônio Líquido -->
+            <tr class="group-row">
+                <td colspan="3">
+                    <button class="toggle-btn" onclick="toggleGroup('patrimonio')">Patrimônio Líquido ▼</button>
+                </td>
+            </tr>
+            <tr class="toggle-content patrimonio"><td>Patrimônio Líquido</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content patrimonio"><td>Capital Social</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content patrimonio"><td>Reserva de Lucros</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content patrimonio"><td>Lucros ou Prejuízos</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+
+            <!-- DRE -->
+            <tr class="group-row">
+                <td colspan="3">
+                    <button class="toggle-btn" onclick="toggleGroup('dre')">DRE ▼</button>
+                </td>
+            </tr>
+            <tr class="toggle-content dre"><td>Vendas Líquidas (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Lucro Bruto (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Lucro Operacional (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Lucro Líquido (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+        </tbody>
+    </table>
+</section>
+
+<script>
+    function toggleGroup(groupClass) {
+        const rows = document.querySelectorAll(`.toggle-content.${groupClass}`);
+        rows.forEach(row => {
+            row.style.display = row.style.display === "table-row" ? "none" : "table-row";
+        });
+    }
+</script>
+                </table>
+            </section>
+
+            <!-- Botão para exibir resultados -->
+            <button class="cta-btn" onclick="exibirResultado()">Exibir Resultado</button>
+
+            <!-- Área onde os resultados serão exibidos -->
+            <div id="resultadoContainer" class="result-container">
+                <h2>Resultado do Cálculo</h2>
+                <p id="resultadoTexto"></p>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
