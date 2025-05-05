@@ -195,3 +195,174 @@ function toggleExpand(id) {
         button.textContent = "+";
     }
 }
+ function toggleGroup(groupClass) {
+        const rows = document.querySelectorAll(`.toggle-content.${groupClass}`);
+        rows.forEach(row => {
+            row.style.display = row.style.display === "table-row" ? "none" : "table-row";
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+    function atualizarTotalAtivoCirculante() {
+        const linhas = document.querySelectorAll('tr.ativo-circulante');
+        if (linhas.length === 0) return;
+
+        let totalAtual = 0;
+        let totalAnterior = 0;
+
+        // Começa da segunda linha (índice 1), pois a primeira é o total
+        for (let i = 1; i < linhas.length; i++) {
+            const inputs = linhas[i].querySelectorAll('input');
+            const valorAtual = parseFloat(inputs[0].value.replace(',', '.')) || 0;
+            const valorAnterior = parseFloat(inputs[1].value.replace(',', '.')) || 0;
+            totalAtual += valorAtual;
+            totalAnterior += valorAnterior;
+        }
+
+        // Preenche a primeira linha com o total
+        const linhaTotal = linhas[0];
+        const inputsTotal = linhaTotal.querySelectorAll('input');
+        inputsTotal[0].value = totalAtual.toFixed(2).replace('.', ',');
+        inputsTotal[1].value = totalAnterior.toFixed(2).replace('.', ',');
+    }
+
+    // Escutar mudanças em todos os campos (menos o total)
+    const linhas = document.querySelectorAll('tr.ativo-circulante');
+    for (let i = 1; i < linhas.length; i++) {
+        const inputs = linhas[i].querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', atualizarTotalAtivoCirculante);
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    function atualizarTotalAtivoNaoCirculante() {
+        const linhas = document.querySelectorAll('tr.ativo-nao-circulante');
+        if (linhas.length === 0) return;
+
+        let totalAtual = 0;
+        let totalAnterior = 0;
+
+        // Começa da segunda linha (índice 1), pois a primeira é o total
+        for (let i = 1; i < linhas.length; i++) {
+            const inputs = linhas[i].querySelectorAll('input');
+            const valorAtual = parseFloat(inputs[0].value.replace(',', '.')) || 0;
+            const valorAnterior = parseFloat(inputs[1].value.replace(',', '.')) || 0;
+            totalAtual += valorAtual;
+            totalAnterior += valorAnterior;
+        }
+
+        // Preenche a primeira linha com o total
+        const linhaTotal = linhas[0];
+        const inputsTotal = linhaTotal.querySelectorAll('input');
+        inputsTotal[0].value = totalAtual.toFixed(2).replace('.', ',');
+        inputsTotal[1].value = totalAnterior.toFixed(2).replace('.', ',');
+    }
+
+    // Escutar mudanças em todos os campos (menos o total)
+    const linhas = document.querySelectorAll('tr.ativo-nao-circulante');
+    for (let i = 1; i < linhas.length; i++) {
+        const inputs = linhas[i].querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', atualizarTotalAtivoNaoCirculante);
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    function atualizarTotalPassivoCirculante() {
+        const linhas = document.querySelectorAll('tr.passivo-circulante');
+        if (linhas.length === 0) return;
+
+        let totalAtual = 0;
+        let totalAnterior = 0;
+
+        // Começa da segunda linha (índice 1), pois a primeira é o total
+        for (let i = 1; i < linhas.length; i++) {
+            const inputs = linhas[i].querySelectorAll('input');
+            const valorAtual = parseFloat(inputs[0].value.replace(',', '.')) || 0;
+            const valorAnterior = parseFloat(inputs[1].value.replace(',', '.')) || 0;
+            totalAtual += valorAtual;
+            totalAnterior += valorAnterior;
+        }
+
+        // Preenche a primeira linha com o total
+        const linhaTotal = linhas[0];
+        const inputsTotal = linhaTotal.querySelectorAll('input');
+        inputsTotal[0].value = totalAtual.toFixed(2).replace('.', ',');
+        inputsTotal[1].value = totalAnterior.toFixed(2).replace('.', ',');
+    }
+
+    // Escutar mudanças em todos os campos (menos o total)
+    const linhas = document.querySelectorAll('tr.passivo-circulante');
+    for (let i = 1; i < linhas.length; i++) {
+        const inputs = linhas[i].querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', atualizarTotalPassivoCirculante);
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    function atualizarTotalPassivoNaoCirculante() {
+        const linhas = document.querySelectorAll('tr.passivo-nao-circulante');
+        if (linhas.length === 0) return;
+
+        let totalAtual = 0;
+        let totalAnterior = 0;
+
+        // Começa da segunda linha (índice 1), pois a primeira é o total
+        for (let i = 1; i < linhas.length; i++) {
+            const inputs = linhas[i].querySelectorAll('input');
+            const valorAtual = parseFloat(inputs[0].value.replace(',', '.')) || 0;
+            const valorAnterior = parseFloat(inputs[1].value.replace(',', '.')) || 0;
+            totalAtual += valorAtual;
+            totalAnterior += valorAnterior;
+        }
+
+        // Preenche a primeira linha com o total
+        const linhaTotal = linhas[0];
+        const inputsTotal = linhaTotal.querySelectorAll('input');
+        inputsTotal[0].value = totalAtual.toFixed(2).replace('.', ',');
+        inputsTotal[1].value = totalAnterior.toFixed(2).replace('.', ',');
+    }
+
+    // Escutar mudanças em todos os campos (menos o total)
+    const linhas = document.querySelectorAll('tr.passivo-nao-circulante');
+    for (let i = 1; i < linhas.length; i++) {
+        const inputs = linhas[i].querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', atualizarTotalPassivoNaoCirculante);
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    function atualizarTotalPatrimonioLiquido() {
+        const linhas = document.querySelectorAll('tr.patrimonio');
+        if (linhas.length === 0) return;
+
+        let totalAtual = 0;
+        let totalAnterior = 0;
+
+        // Começa da segunda linha (índice 1), pois a primeira é o total
+        for (let i = 1; i < linhas.length; i++) {
+            const inputs = linhas[i].querySelectorAll('input');
+            const valorAtual = parseFloat(inputs[0].value.replace(',', '.')) || 0;
+            const valorAnterior = parseFloat(inputs[1].value.replace(',', '.')) || 0;
+            totalAtual += valorAtual;
+            totalAnterior += valorAnterior;
+        }
+
+        // Preenche a primeira linha com o total
+        const linhaTotal = linhas[0];
+        const inputsTotal = linhaTotal.querySelectorAll('input');
+        inputsTotal[0].value = totalAtual.toFixed(2).replace('.', ',');
+        inputsTotal[1].value = totalAnterior.toFixed(2).replace('.', ',');
+    }
+
+    // Escutar mudanças em todos os campos (menos o total)
+    const linhas = document.querySelectorAll('tr.patrimonio');
+    for (let i = 1; i < linhas.length; i++) {
+        const inputs = linhas[i].querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', atualizarTotalPatrimonioLiquido);
+        });
+    }
+});
