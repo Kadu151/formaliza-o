@@ -132,22 +132,13 @@
                     <button class="toggle-btn" onclick="toggleGroup('dre')">DRE ▼</button>
                 </td>
             </tr>
-            <tr class="toggle-content dre"><td>Vendas Líquidas (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
-            <tr class="toggle-content dre"><td>Lucro Bruto (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
-            <tr class="toggle-content dre"><td>Lucro Operacional (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
-            <tr class="toggle-content dre"><td>Lucro Líquido (DRE)</td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Vendas Líquidas </td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Lucro Bruto </td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Lucro Operacional </td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
+            <tr class="toggle-content dre"><td>Lucro Líquido </td><td><input type="text" class="anoAtual"></td><td><input type="text" class="anoAnterior"></td></tr>
         </tbody>
     </table>
 </section>
-
-<script>
-    function toggleGroup(groupClass) {
-        const rows = document.querySelectorAll(`.toggle-content.${groupClass}`);
-        rows.forEach(row => {
-            row.style.display = row.style.display === "table-row" ? "none" : "table-row";
-        });
-    }
-</script>
                 </table>
             </section>
 
