@@ -120,5 +120,33 @@
       </tbody>
     </table>
   </div>
+  <div class="flex justify-end mb-4">
+    <button onclick="copiarTabela()" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded">
+      Copiar Tabela
+    </button>
+  </div>
+  
+  <script>
+    function copiarTabela() {
+      const tabela = document.querySelector('table');
+      const range = document.createRange();
+      range.selectNode(tabela);
+  
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+  
+      try {
+        const successful = document.execCommand('copy');
+        alert('Tabela copiada com sucesso!');
+      } catch (err) {
+        alert('Erro ao copiar a tabela.');
+      }
+  
+      selection.removeAllRanges();
+    }
+  </script>
+  
+      
 </body>
 </html>
