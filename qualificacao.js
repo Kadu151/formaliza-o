@@ -61,7 +61,7 @@ function generateText() {
     // Verifica se o estado civil é "casado(a)"
     if (role === 'comprador') {
         generatedText = `
-            De um lado, como <strong>OUTORGADO(a,as,os) COMPRADOR(a,es, DEVEDOR(a,es) FIDUCIANTE(s) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrita no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, com certidão de ${marriedborn} com matrícula nº ${certificate}, expedida pelo ${registryOffice}, residente e domiciliado(a) na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
+            De um lado, como <strong>OUTORGADO(a,as,os) COMPRADOR(a,es, DEVEDOR(a,es) FIDUCIANTE(s) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrita no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, com certidão de ${marriedborn} com matrícula nº ${certificate}, expedida pelo ${registryOffice}, declara que não possui união estavel como se casado(a) fosse, residente e domiciliado(a) na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, ${neighborhood}, CEP: ${cep}.
         `;
     
         if (maritalStatus === 'casado(a)') {
@@ -72,7 +72,7 @@ function generateText() {
         }
     } else if (role === 'vendedor') {
         generatedText = `
-            De um lado, como <strong>OUTORGANTE(s) VENDEDOR(a,es,as) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, com certidão de ${marriedborn} com matrícula nº ${certificate}, expedida pelo ${registryOffice}, residente e domiciliado(a) na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, Bairro: ${neighborhood}, CEP: ${cep}.
+            De um lado, como <strong>OUTORGANTE(s) VENDEDOR(a,es,as) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, com certidão de ${marriedborn} com matrícula nº ${certificate}, expedida pelo ${registryOffice}, declara que não possui união estavel como se casado(a) fosse, residente e domiciliado(a) na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, Bairro: ${neighborhood}, CEP: ${cep}.
         `;
         if (maritalStatus === 'casado(a)') {
             generatedText += `
@@ -82,7 +82,7 @@ function generateText() {
         }
     } else if (role === 'fiador') {
         generatedText = `
-            De outro lado, como <strong>FIADOR(a,es) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, com certidão de ${marriedborn} com matrícula nº ${certificate}, expedida pelo ${registryOffice}, residente e domiciliad0(a) na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, Bairro: ${neighborhood}, CEP: ${cep}.
+            De outro lado, como <strong>FIADOR(a,es) – ${name}</strong>, ${nationality}, ${profession}, ${maritalStatus}, portador(a) da cédula de identidade RG sob nº ${rg}, inscrito(a) no CPF/MF de nº ${cpf}, filho(a) de ${filiation}, e-mail: ${email}, telefone: ${phone}, maior, nascido(a) em ${birthdate} conforme declarou, com certidão de ${marriedborn} com matrícula nº ${certificate}, expedida pelo ${registryOffice}, declara que não possui união estavel como se casado(a) fosse, residente e domiciliad0(a) na cidade de ${city}, Estado de ${state}, na ${street}, nº ${houseNumber}, Bairro: ${neighborhood}, CEP: ${cep}.
         `;
         if (maritalStatus === 'casado(a)') {
             generatedText += `
