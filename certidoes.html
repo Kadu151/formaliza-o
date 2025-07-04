@@ -1,212 +1,290 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gerador de Texto Jurídico</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="certidoes.css" />
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-200 min-h-screen flex flex-col">
-  <!-- Navbar -->
-  <nav class="bg-gray-800 bg-opacity-90 p-4 shadow-lg backdrop-blur-md sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="index.html" class="text-teal-400 text-2xl font-bold tracking-wide flex items-center">
-        <!-- Ícone da Home -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h16v-5h-16v5z" />
-        </svg>
-        OurWork      </a>
-      <div class="space-x-6 flex items-center">
-        <!-- Links com ícones -->
-        <a href="index.html" class="text-gray-300 hover:text-teal-400 flex items-center transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9L12 3L21 9V21C21 21.553 20.553 22 20 22H4C3.447 22 3 21.553 3 21V9Z"></path>
-            <path d="M9 22V12H15V22"></path>
-          </svg>          
-          Início
-          <a href="manipulacao.html" class="text-gray-300 hover:text-teal-400 flex items-center transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.293 2.293a1 1 0 011.414 1.414l-2.56 2.56a6.993 6.993 0 011.404 3.149l2.154-.541a1 1 0 011.162 1.205l-1.506 6.024a1 1 0 01-1.207.755l-6.024-1.506a1 1 0 01-.755-1.207l.541-2.154a6.993 6.993 0 01-3.149-1.404l-2.56 2.56a1 1 0 01-1.414-1.414l2.56-2.56a6.993 6.993 0 01-1.404-3.149l-.541 2.154a1 1 0 01-1.205 1.162L2.293 7.707a1 1 0 01-.755-1.207l1.506-6.024a1 1 0 011.207-.755l6.024 1.506a1 1 0 01.755 1.207l-.541 2.154a6.993 6.993 0 013.149 1.404l2.56-2.56a1 1 0 011.414 1.414z" clip-rule="evenodd" />
-              </svg>
-          Maipulação de Pdf
-        </a>
-        <a href="ocr.html" class="text-gray-300 hover:text-teal-400 flex items-center transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 2H16C16.553 2 17 2.447 17 3V17C17 17.553 16.553 18 16 18H4C3.447 18 3 17.553 3 17V3C3 2.447 3.447 2 4 2ZM4 3V15H16V3H4ZM4 15V21H16V15H4Z"></path>
-            </svg>
-          Leitura de Docs
-        </a>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-content">
+    <button id="btnBack" class="btn-back" onclick="navigateTo('qualificacao.html')">← Voltar</button>
+
+    <div class="nav-links">
+      <div onclick="navigateTo('qualificacao.html')" class="nav-item">
+        <span>📄</span> Qualificação
+      </div>
+      <div onclick="navigateTo('ocr.html')" class="nav-item">
+        <span>📚</span> Leitura de Docs
       </div>
     </div>
-  </nav>
-  <div class="relative mb-6">
-    <!-- Botão pequeno -->
-    <a href="qualificacao.html">
-      <button class="absolute top-0 left-0 bg-teal-500 text-white text-sm p-2 rounded-lg hover:bg-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500">
-        Voltar
-      </button>
-    </a>
-  <div class="bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-2xl mx-auto mt-8">
-    <h1 class="text-3xl font-extrabold text-teal-500 text-center hover:text-teal-400">Gerador de Texto Jurídico</h1>
+
+    <!-- Botão para mostrar/ocultar opções -->
+    <button id="btnToggleNavButtons" class="btn-toggle" aria-expanded="false" aria-controls="navButtons">
+      ☰ Menu
+    </button>
+
+    <div class="nav-buttons" id="navButtons" style="display:none;">
+      <a href="pessoapj.html">
+        <button class="btn-teal">Pessoa Jurídica</button>
+      </a>
+      <a href="certidoes.html">
+        <button class="btn-teal">Certidões</button>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main class="form-wrapper">
+  <form id="textGeneratorForm">
+
+    <div class="form-group">
+      <label for="role" class="label">Selecione o Papel:</label>
+      <select id="role" class="input-select">
+        <option value="vendedor">com Vendedor</option>
+        <option value="comprador">sem Vendedor</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="matricula" class="label">Número da Matrícula:</label>
+      <input type="text" id="matricula" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="emissaomatricula" class="label">Data de emissão da Matrícula:</label>
+      <input type="text" id="emissaomatricula" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="numerooficio" class="label">Número de Ofício:</label>
+      <input type="text" id="numerooficio" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="cartorio" class="label">Cartório:</label>
+      <input type="text" id="cartorio" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="Estado">Nome do Estado:</label>
+      <select id="Estado" name="Estado" class="input-select">
+  <option value="">-- Selecione o Estado --</option>
+        <option value="Acre">Acre</option>
+        <option value="Alagoas">Alagoas</option>
+        <option value="Amapá">Amapá</option>
+        <option value="Amazonas">Amazonas</option>
+        <option value="Bahia">Bahia</option>
+        <option value="Ceará">Ceará</option>
+        <option value="Distrito Federal">Distrito Federal</option>
+        <option value="Espírito Santo">Espírito Santo</option>
+        <option value="Goiás">Goiás</option>
+        <option value="Maranhão">Maranhão</option>
+        <option value="Mato Grosso">Mato Grosso</option>
+        <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+        <option value="Minas Gerais">Minas Gerais</option>
+        <option value="Pará">Pará</option>
+        <option value="Paraíba">Paraíba</option>
+        <option value="Paraná">Paraná</option>
+        <option value="Pernambuco">Pernambuco</option>
+        <option value="Piauí">Piauí</option>
+        <option value="Rio de Janeiro">Rio de Janeiro</option>
+        <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+        <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+        <option value="Rondônia">Rondônia</option>
+        <option value="Roraima">Roraima</option>
+        <option value="Santa Catarina">Santa Catarina</option>
+        <option value="São Paulo">São Paulo</option>
+        <option value="Sergipe">Sergipe</option>
+        <option value="Tocantins">Tocantins</option>
+      </select>
+    </div>
+<div class="form-group">
+
+    <div class="form-group">
+      <label for="certidao" class="label">Nome da Certidão:</label>
+      <input type="text" id="certidao" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="numerocertidao" class="label">Número de Certidão:</label>
+      <input type="text" id="numerocertidao" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="datacertidao" class="label">Data de Emissão de Certidão:</label>
+      <input type="text" id="datacertidao" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="validadecertidao" class="label">Data de Validade da Certidão:</label>
+      <input type="text" id="validadecertidao" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="receitavendedor" class="label">Data da Receita do Vendedor:</label>
+      <input type="text" id="receitavendedor" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="validadevendedor" class="label">Validade da Receita do Vendedor:</label>
+      <input type="text" id="validadevendedor" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="codigovendedor" class="label">Código da Receita do Vendedor:</label>
+      <input type="text" id="codigovendedor" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="cndtvendedor" class="label">Código CNDT Vendedor:</label>
+      <input type="text" id="cndtvendedor" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="datacndtvendedor" class="label">Data CNDT do Vendedor:</label>
+      <input type="text" id="datacndtvendedor" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="validadecndtvendedor" class="label">Validade CNDT do Vendedor:</label>
+      <input type="text" id="validadecndtvendedor" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="receitacomprador" class="label">Data da Receita do Comprador:</label>
+      <input type="text" id="receitacomprador" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="validadecomprador" class="label">Validade da Receita do Comprador:</label>
+      <input type="text" id="validadecomprador" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="codigocomprador" class="label">Código da Receita do Comprador:</label>
+      <input type="text" id="codigocomprador" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="cndtcomprador" class="label">Código CNDT Comprador:</label>
+      <input type="text" id="cndtcomprador" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="datacndtcomprador" class="label">Data CNDT do Comprador:</label>
+      <input type="text" id="datacndtcomprador" class="input-text" />
+    </div>
+
+    <div class="form-group">
+      <label for="validadecndtcomprador" class="label">Validade CNDT do Comprador:</label>
+      <input type="text" id="validadecndtcomprador" class="input-text" />
+    </div>
+
+    <button type="button" onclick="generateText()" class="btn-submit">
+      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+      </svg>
+      Gerar Texto
+    </button>
+
+  </form>
+
+  <div id="generatedText" class="generated-text">
+    <h2 class="generated-text-title">Texto Gerado:</h2>
+    <div id="output"></div>
+  </div>
+</main>
+
+<script>
+    
+  document.getElementById('textGeneratorForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const role = document.getElementById('role').value;
+    // aqui você pode coletar os outros campos e processar o texto conforme necessário
+    const generatedText = `Texto gerado com o papel: ${role}`;
+    document.getElementById('output').textContent = generatedText;
+  });
+
+  // Exemplo simples para alternar menu
+  document.getElementById('btnToggleNavButtons').addEventListener('click', () => {
+    const navButtons = document.getElementById('navButtons');
+    const expanded = navButtons.style.display === 'block';
+    navButtons.style.display = expanded ? 'none' : 'block';
+    document.getElementById('btnToggleNavButtons').setAttribute('aria-expanded', !expanded);
+  });
+
+  function navigateTo(url) {
+    window.location.href = url;
+  }
   
-    <form id="textGeneratorForm" class="space-y-6">
-        <div class="space-y-2">
-          <label for="role" class="block text-sm font-medium">Selecione o Papel:</label>
-          <select id="role" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option value="vendedor"> com Vendedor</option>
-            <option value="comprador">sem Vendedor</option>
-          </select>
-        </div>
+  function generateText() {
+    // você pode implementar sua lógica aqui para gerar texto
+    const role = document.getElementById('role').value;
+    const generatedText = `Texto gerado com o papel: ${role}`;
+    document.getElementById('output').textContent = generatedText;
+  }
+   // Função que atualiza o campo certidão se o estado for SP
+  function onEstadoChange() {
+    const estadoSelect = document.getElementById('Estado');
+    const certidaoInput = document.getElementById('certidao');
 
-        <!-- Novos campos adicionados -->
-        <div class="space-y-2">
-          <label for="matricula" class="block text-sm font-medium">Numero da Matricula:</label>
-          <input type="text" id="matricula" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+    if (estadoSelect.value === 'São Paulo') {
+      certidaoInput.value = "Certidão Conjunta de Débitos de Tributos Imobiliários";
+      certidaoInput.disabled = true; // opcional: bloqueia edição quando auto preenchido
+    } else {
+      certidaoInput.value = "";
+      certidaoInput.disabled = false;
+    }
 
-        <div class="space-y-2">
-          <label for="emissaomatricula" class="block text-sm font-medium">Data de emissão da Matricula:</label>
-          <input type="text" id="emissaomatricula" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+    updatePreview();
+  }
 
-        <div class="space-y-2">
-          <label for="numerooficio" class="block text-sm font-medium">Numero de Oficio:</label>
-          <input type="text" id="numerooficio" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
-        
-        <div class="space-y-2">
-          <label for="cartorio" class="block text-sm font-medium">Cartorio:</label>
-          <input type="text" id="cartorio" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+  function updatePreview() {
+    const role = document.getElementById('role').value;
+    const matricula = document.getElementById('matricula').value.trim();
+    const emissaomatricula = document.getElementById('emissaomatricula').value.trim();
+    const cartorio = document.getElementById('cartorio').value.trim();
+    const estado = document.getElementById('Estado').value.trim();
+    const certidao = document.getElementById('certidao').value.trim();
+    const numerocertidao = document.getElementById('numerocertidao').value.trim();
+    const datacertidao = document.getElementById('datacertidao').value.trim();
+    const validadecertidao = document.getElementById('validadecertidao').value.trim();
 
-        <div class="space-y-2">
-          <label for="Estado" class="block text-sm font-medium">Nome do Estado</label>
-          <input type="text" id="Estado" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+    let texto = `Papel selecionado: ${role === 'vendedor' ? 'Com Vendedor' : 'Sem Vendedor'}.\n`;
 
-        <div class="space-y-2">
-          <label for="certidao" class="block text-sm font-medium">Nome da Certidão:</label>
-          <input type="text" id="certidao" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+    if (matricula) texto += `Matrícula nº ${matricula}`;
+    if (emissaomatricula) texto += `, emitida em ${emissaomatricula}`;
+    if (cartorio) texto += `, no cartório ${cartorio}`;
+    if (estado) texto += `, estado ${estado}`;
+    texto += '.\n';
 
-        <div class="space-y-2">
-          <label for="numerocertidao" class="block text-sm font-medium">Numero de Certidão:</label>
-          <input type="text" id="numerocertidao" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+    if (certidao) texto += `Certidão: ${certidao}`;
+    if (numerocertidao) texto += `, nº ${numerocertidao}`;
+    if (datacertidao) texto += `, emitida em ${datacertidao}`;
+    if (validadecertidao) texto += `, válida até ${validadecertidao}`;
+    texto += '.';
 
-        <div class="space-y-2">
-          <label for="datacertidao" class="block text-sm font-medium">Data de Emissão de Certidão:</label>
-          <input type="text" id="datacertidao" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+    document.getElementById('output').textContent = texto;
+  }
 
-        <div class="space-y-2">
-          <label for="validadecertidao" class="block text-sm font-medium">Data de Validade da Certidão:</label>
-          <input type="text" id="validadecertidao" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+  // Listeners para atualizar preview e para alteração no select Estado
+  const inputs = document.querySelectorAll('#textGeneratorForm input, #textGeneratorForm select');
+  inputs.forEach(input => {
+    input.addEventListener('input', updatePreview);
+  });
 
-        <div class="space-y-2">
-          <label for="receitavendedor" class="block text-sm font-medium">Data da Receita do Vendedor:</label>
-          <input type="text" id="receitavendedor" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+  document.getElementById('Estado').addEventListener('change', onEstadoChange);
 
-        <div class="space-y-2">
-          <label for="validadevendedor" class="block text-sm font-medium">Validade da Receita do Vendedor:</label>
-          <input type="text" id="validadevendedor" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+  window.addEventListener('DOMContentLoaded', () => {
+    updatePreview();
+    onEstadoChange(); // para ajustar certidão se estado já estiver selecionado no reload
+  });
+</script>
 
-        <div class="space-y-2">
-          <label for="codigovendedor" class="block text-sm font-medium">Codigo da Receita do Vendedor:</label>
-          <input type="text" id="codigovendedor" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
+<script src="certidoes.js"></script>
 
-        <div class="space-y-2">
-          <label for="cndtvendedor" class="block text-sm font-medium">Codigo CNDT Vendedor:</label>
-          <input type="text" id="cndtvendedor" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-        </div>
-
-        <div class="space-y-2">
-            <label for="datacndtvendedor" class="block text-sm font-medium">Data CNDT do Vendedor:</label>
-            <input type="text" id="datacndtvendedor" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-          </div>
-
-          <div class="space-y-2">
-            <label for="validadecndtvendedor" class="block text-sm font-medium">Validade CNDT do Vendedor:</label>
-            <input type="text" id="validadecndtvendedor" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-          </div>
-
-          <div class="space-y-2">
-            <label for="receitacomprador" class="block text-sm font-medium">Data da Receita do Comprador:</label>
-            <input type="text" id="receitacomprador" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-          </div>
-  
-          <div class="space-y-2">
-            <label for="validadecomprador" class="block text-sm font-medium">Validade da Receita do Comprador:</label>
-            <input type="text" id="validadecomprador" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-          </div>
-  
-          <div class="space-y-2">
-            <label for="codigocomprador" class="block text-sm font-medium">Codigo da Receita do Comprador:</label>
-            <input type="text" id="codigocomprador" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-          </div>
-  
-          <div class="space-y-2">
-            <label for="cndtcomprador" class="block text-sm font-medium">Codigo CNDT Comprador:</label>
-            <input type="text" id="cndtcomprador" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-          </div>
-  
-          <div class="space-y-2">
-              <label for="datacndtcomprador" class="block text-sm font-medium">Data CNDT do Comprador:</label>
-              <input type="text" id="datacndtcomprador" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-            </div>
-  
-            <div class="space-y-2">
-              <label for="validadecndtcomprador" class="block text-sm font-medium">Validade CNDT do Comprador:</label>
-              <input type="text" id="validadecndtcomprador" class="mt-1 block w-full border-gray-600 bg-gray-700 text-gray-200 rounded-md shadow-sm" />
-            </div>
-
-        <form id="textGeneratorForm" class="space-y-6">
-      
-             <!-- Botão de geração -->
-             <button type="button" onclick="generateText()" class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-lg mt-6 font-semibold transition duration-200 transform hover:scale-105">
-                <div class="flex items-center justify-center space-x-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                  </svg>
-                  <span>Gerar Texto</span>
-                </div>
-              </button>
-              
-            
-            </form>
-            
-            <div id="generatedText" class="mt-6 p-4 bg-gray-700 rounded-md shadow-md">
-                <h2 class="text-lg font-semibold mb-2 text-gray-300 hover:text-teal-400 flex items-center transition">Texto Gerado:</h2>
-                <div id="output" style="text-align: justify; margin-left: 30px; margin-right: 30px; font-family: 'Times New Roman', Times, serif; color: #E5E7EB;"></div>
-            </div>  
-
-              <script>
-    document.getElementById('textGeneratorForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const role = document.getElementById('role').value;
-      // Aqui você pode coletar os outros campos conforme necessário.
-      
-      const generatedText = `Texto gerado com o papel: ${role}`; // Exemplo simples
-
-      // Exibir o texto gerado no container
-      document.getElementById('generatedText').textContent = generatedText;
-    });
-  </script>
-
-      
-          <script src="certidoes.js">
-      </script>
-    <!-- Ícone de Chat -->
-<a href="https://chatgpt.com/" target="_blank" class="fixed bottom-20 right-6 bg-teal-400 text-white p-4 rounded-full shadow-lg hover:bg-teal-500 transition duration-200">
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
-    <path d="M45.403,25.562c-0.506-1.89-1.518-3.553-2.906-4.862c1.134-2.665,0.963-5.724-0.487-8.237	c-1.391-2.408-3.636-4.131-6.322-4.851c-1.891-0.506-3.839-0.462-5.669,0.088C28.276,5.382,25.562,4,22.647,4	c-4.906,0-9.021,3.416-10.116,7.991c-0.01,0.001-0.019-0.003-0.029-0.002c-2.902,0.36-5.404,2.019-6.865,4.549	c-1.391,2.408-1.76,5.214-1.04,7.9c0.507,1.891,1.519,3.556,2.909,4.865c-1.134,2.666-0.97,5.714,0.484,8.234	c1.391,2.408,3.636,4.131,6.322,4.851c0.896,0.24,1.807,0.359,2.711,0.359c1.003,0,1.995-0.161,2.957-0.45	C21.722,44.619,24.425,46,27.353,46c4.911,0,9.028-3.422,10.12-8.003c2.88-0.35,5.431-2.006,6.891-4.535	C45.754,31.054,46.123,28.248,45.403,25.562z M35.17,9.543c2.171,0.581,3.984,1.974,5.107,3.919c1.049,1.817,1.243,4,0.569,5.967	c-0.099-0.062-0.193-0.131-0.294-0.19l-9.169-5.294c-0.312-0.179-0.698-0.177-1.01,0.006l-10.198,6.041l-0.052-4.607l8.663-5.001	C30.733,9.26,33,8.963,35.17,9.543z M29.737,22.195l0.062,5.504l-4.736,2.805l-4.799-2.699l-0.062-5.504l4.736-2.805L29.737,22.195z M14.235,14.412C14.235,9.773,18.009,6,22.647,6c2.109,0,4.092,0.916,5.458,2.488C28,8.544,27.891,8.591,27.787,8.651l-9.17,5.294	c-0.312,0.181-0.504,0.517-0.5,0.877l0.133,11.851l-4.015-2.258V14.412z M6.528,23.921c-0.581-2.17-0.282-4.438,0.841-6.383	c1.06-1.836,2.823-3.074,4.884-3.474c-0.004,0.116-0.018,0.23-0.018,0.348V25c0,0.361,0.195,0.694,0.51,0.872l10.329,5.81	L19.11,34.03l-8.662-5.002C8.502,27.905,7.11,26.092,6.528,23.921z M14.83,40.457c-2.171-0.581-3.984-1.974-5.107-3.919	c-1.053-1.824-1.249-4.001-0.573-5.97c0.101,0.063,0.196,0.133,0.299,0.193l9.169,5.294c0.154,0.089,0.327,0.134,0.5,0.134	c0.177,0,0.353-0.047,0.51-0.14l10.198-6.041l0.052,4.607l-8.663,5.001C19.269,40.741,17.001,41.04,14.83,40.457z M35.765,35.588	c0,4.639-3.773,8.412-8.412,8.412c-2.119,0-4.094-0.919-5.459-2.494c0.105-0.056,0.216-0.098,0.32-0.158l9.17-5.294	c0.312-0.181,0.504-0.517,0.5-0.877L31.75,23.327l4.015,2.258V35.588z M42.631,32.462c-1.056,1.83-2.84,3.086-4.884,3.483	c0.004-0.12,0.018-0.237,0.018-0.357V25c0-0.361-0.195-0.694-0.51-0.872l-10.329-5.81l3.964-2.348l8.662,5.002	c1.946,1.123,3.338,2.937,3.92,5.107C44.053,28.249,43.754,30.517,42.631,32.462z"></path>
-    </svg>
-</a>
-      </body>
-      </html>
+</body>
+</html>
