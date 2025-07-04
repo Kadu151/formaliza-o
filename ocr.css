@@ -1,0 +1,230 @@
+/* === Tema Escuro com Degradê === */
+body {
+  background: linear-gradient(
+    to bottom right,
+    #1b2e51,
+    #182948,
+    #152440,
+    #122038,
+    #101b30,
+    #0d1728,
+    #0a1220,
+    #080d18,
+    #050910,
+    #020408,
+    #000000
+  );
+  color: #e7f4fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Navbar === */
+.navbar {
+  background-color: rgba(24, 41, 72, 0.95);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.nav-item {
+  background-color: #233454;
+  color: #cbe7f9;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: #2780a9;
+}
+
+/* Botões do topo */
+#btnBack,
+#btnToggleNavButtons {
+  background-color: #1b2e51;
+  color: #a2d3ec;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btnBack:hover,
+#btnToggleNavButtons:hover {
+  background-color: #2780a9;
+}
+
+/* Botões de navegação extras */
+#navButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-teal {
+  background-color: #a2d3ec;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-teal:hover {
+  background-color: #1aa79b;
+}
+
+/* === Container principal === */
+.bg-gray-800 {
+  background-color: rgba(24, 41, 72, 0.9);
+  padding: 2.5rem;
+  margin: 3rem auto;
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  max-width: 800px;
+  width: 90%;
+}
+
+/* === Título === */
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  color: #a2d3ec;
+  margin-bottom: 2rem;
+  transition: color 0.3s;
+}
+
+h1:hover {
+  color: #7ed6d0;
+}
+
+/* === Upload PDF === */
+#pdfUpload {
+  width: 100%;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  background-color: transparent;
+}
+
+#pdfUpload::file-selector-button {
+  padding: 0.75rem 1.25rem;
+  background-color: #2a3e63;
+  color: #e7f4fa;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#pdfUpload::file-selector-button:hover {
+  background-color: #1aa79b;
+}
+
+/* Botão de extração */
+button[onclick="performOCR()"] {
+  background-color: #a2d3ec;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button[onclick="performOCR()"]:hover {
+  background-color: #1aa79b;
+  transform: scale(1.05);
+}
+
+/* === Área de resultado === */
+#output {
+  background-color: #1f2937; /* fundo escuro, tom azul acinzentado */
+  color: #a2d3ec; /* texto claro e suave */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: inset 0 0 8px rgba(14, 165, 233, 0.5); /* leve brilho azul interno */
+  max-height: 24rem; /* limite de altura para overflow */
+  overflow-y: auto; /* barra de rolagem vertical */
+  white-space: pre-wrap; /* respeita quebras de linha e quebra linhas longas */
+  user-select: text; /* permitir seleção */
+  transition: background-color 0.3s ease;
+}
+
+#output h3 {
+  color: #a2d3ec; /* azul claro */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  border-bottom: 2px solid #a2d3ec;
+  padding-bottom: 0.3rem;
+}
+
+#output pre {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0f172a; /* fundo para o texto pré-formatado */
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+  font-size: 0.95rem;
+  color: #a2d3ec; /* azul claro para o texto do pre */
+}
+
+#output p {
+  margin: 0.5rem 0;
+  color: #a2d3ec; /* tom mais suave para parágrafos */
+}
+
+
+/* === Botão copiar texto === */
+button[onclick="copyText()"] {
+  background-color: #a2d3ec;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[onclick="copyText()"]:hover {
+  background-color: #1aa79b;
+  transform: scale(1.05);
+}
+
+button[onclick="copyText()"] svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
