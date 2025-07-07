@@ -1,0 +1,333 @@
+/* qualificacao.css */
+
+/* Reset e body */
+body {
+  background: linear-gradient(
+    to bottom right,
+    #1b2e51,
+    #182948,
+    #152440,
+    #122038,
+    #101b30,
+    #0d1728,
+    #0a1220,
+    #080d18,
+    #050910,
+    #020408,
+    #000000
+  );
+  color: #e7f4fa;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+/* Containers */
+.container {
+  width: 90%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #122038; /* azul escuro do tema */
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #a2d3ec;
+}
+
+.nav-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-teal {
+  background-color: #14b8a6; /* mantém o teal vibrante */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-teal:hover {
+  background-color: #2dd4bf;
+}
+
+/* Botão voltar */
+.btn-back {
+  background: none;
+  border: none;
+  color: #a2d3ec; /* tom claro */
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+  color: #ffffff;
+}
+
+/* Botão toggle do menu */
+.btn-toggle {
+  background: transparent;
+  border: 2px solid #a2d3ec; /* teal */
+  color: #a2d3ec;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+
+.btn-toggle:hover {
+  background-color: #a2d3ec;
+  color: white;
+}
+
+/* Botões laterais */
+.button-group {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.button-group a {
+  text-decoration: none;
+}
+
+/* Botões 'Ir para Pessoa Jurídica' e 'Ir para Certidões' */
+.btn-teal {
+  background-color: #a2d3ec; /* teal */
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  width: 150px;
+  text-align: center;
+}
+
+.btn-teal:hover,
+.btn-teal:focus {
+  background-color: #a2d3ec;
+  outline: none;
+  box-shadow: 0 0 0 2px #a2d3ec;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+  background-color: #182948; /* escuro, como card do index */
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  margin-top: 6rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #e7f4fa;
+}
+
+/* Title */
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #e7f4fa;
+  text-align: center;
+  margin-bottom: 3rem;
+  user-select: none;
+  cursor: default;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #b9def1;
+}
+
+/* Inputs and selects */
+.input-text,
+.input-select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #122038;
+  background-color: #152440;
+  color: #e7f4fa;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-text::placeholder,
+.input-select {
+  color: #a2d3ec;
+}
+
+.input-text:focus,
+.input-select:focus {
+  outline: none;
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.5);
+}
+
+/* Espaçamento para campos múltiplos */
+.form-spacing > .form-group {
+  margin-top: 1.5rem;
+}
+
+/* Seção do cônjuge */
+.spouse-fields {
+  margin-top: 1rem;
+}
+
+.sub-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #b9def1;
+  margin-bottom: 1rem;
+}
+
+/* Botão de enviar */
+.btn-submit {
+  width: 100%;
+  background-color: #a2d3ec;
+  color: white;
+  padding: 0.75rem 0;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.btn-submit:hover {
+  background-color: #a2d3ec;
+  transform: scale(1.05);
+}
+
+.btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #a2d3ec;
+}
+
+/* Ícone do botão */
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+/* Texto gerado */
+.generated-text {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #182948;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  color: #b9def1;
+}
+
+.generated-text-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  cursor: default;
+  transition: color 0.3s ease;
+}
+
+.generated-text-title:hover {
+  color: #14b8a6;
+}
+
+/* Estilo do output */
+#output {
+  text-align: justify;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-family: "Times New Roman", Times, serif;
+  color: #e7f4fa;
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+  .button-group {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .btn-teal {
+    width: auto;
+  }
+}
